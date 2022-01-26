@@ -12,7 +12,7 @@ const Counter = () => {
     
     const checkWalletConnected = async () => {
 		const { ethereum } = window
-		
+		window.ethereum.enable()
 		if(!ethereum) {
 			console.log('Install Metamask')
 			return
