@@ -70,11 +70,17 @@ const Counter = () => {
         const contract = new ethers.Contract(ContractAddress, nft.abi, signer);
 
         const id  = await contract.getCurrentJsonId();
-        console.log("id", id, traits[id][0].value, traits[id][1].value);
-        
-        const minttxn = await contract.mint(Number(id), traits[id][0].value, traits[id][1].value, traits[id][2].value, traits[id][3].value, traits[id][4].value.toString() )
+        console.log("id", id, traits[id][0].value, );
+        if(traits[id].length == 4) {
+        const minttxn = await contract.mint(Number(id), traits[id][0].value, traits[id][1].value, traits[id][2].value, traits[id][3].value, "" )
         const txn = await minttxn.wait();
         console.log(txn);
+        }
+        else {
+            const minttxn = await contract.mint(Number(id), traits[id][0].value, traits[id][1].value, traits[id][2].value, traits[id][3].value, `${traits[4].value}` )
+            const txn = await minttxn.wait();
+            console.log(txn);
+        }
         
     } 
 
