@@ -5,14 +5,14 @@ import  traits  from '../json/traits.json';
 import nft from "../json/nft.json";
 // import { traits } from '../json/json.js';
 
-const ContractAddress = "0x2Dcf41413d38a770860832c0F4C53d5E0230Ff82";
+const ContractAddress = "0x3A50737F1ED1564d40A0a2fFe89c510B7F9f76F6";
 const Counter = () => {
 
     const [count,setCount]=useState(0);
     
     const checkWalletConnected = async () => {
-		const { ethereum } = window
 		window.ethereum.enable()
+		const { ethereum } = window
 		if(!ethereum) {
 			console.log('Install Metamask')
 			return
@@ -71,16 +71,28 @@ const Counter = () => {
 
         const id  = await contract.getCurrentJsonId();
         console.log("id", id, traits[id]);
-        if(traits[id].length === 4) {
-        const minttxn = await contract.mint(Number(id), traits[id][0].value, traits[id][1].value, traits[id][2].value, traits[id][3].value, "" )
-        const txn = await minttxn.wait();
-        console.log(txn);
+
+        const arrayOfString = [];
+
+        for (let index = 0; index < traits[id].length -1; index++) {
+            const element = traits[id][index].value;
+            arrayOfString.push(element)
         }
-        else {
-            const minttxn = await contract.mint(Number(id), traits[id][0].value, traits[id][1].value, traits[id][2].value, traits[id][3].value, `${traits[4].value}` )
+        console.log('array ', arrayOfString);
+
+        for (let index = traits[id].length; index < 8; index++) {
+            arrayOfString.push("");
+        }
+
+        console.log('array ', arrayOfString);
+       
+            const minttxn = await contract.mint(Number(id), arrayOfString )
             const txn = await minttxn.wait();
             console.log(txn);
-        }
+            // const minttxn = await contract.mint(Number(id), traits[id][0].value, traits[id][1].value, traits[id][2].value, traits[id][3].value, `${traits[4].value}` )
+            // const txn = await minttxn.wait();
+            // console.log(txn);
+        
         
     } 
 
