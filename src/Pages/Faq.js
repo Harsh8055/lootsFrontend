@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Accordion, Row, Col } from 'react-bootstrap'
 
 const Faq = () => {

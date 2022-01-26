@@ -9,7 +9,7 @@ const ContractAddress = "0x2Dcf41413d38a770860832c0F4C53d5E0230Ff82";
 const Counter = () => {
 
     const [count,setCount]=useState(0);
-    const [account, setAccount] = useState(null)
+    
     const checkWalletConnected = async () => {
 		const { ethereum } = window
 		
@@ -22,10 +22,11 @@ const Counter = () => {
 
 		if(accounts.length !== 0) {
 			const account = accounts[0]
+
 			console.log("Found Account, ", account)
 			let provider = new ethers.providers.Web3Provider(window.ethereum)
 			let network = await provider.getNetwork()
-			setAccount(account)
+			
 			if(network.name !==  "maticmum") {
 				alert("not connected to polygon mumbai testnet, please change the network to polygon mumbai testnet ")
 			}
