@@ -72,7 +72,7 @@ const Counter = () => {
         const id  = await contract.getCurrentJsonId();
         console.log("id", id, traits[id][0].value, traits[id][1].value);
         
-        const minttxn = await contract.mint(Number(id), traits[id][0].value, traits[id][1].value, traits[id][2].value, traits[id][3].value, traits[id][4].value )
+        const minttxn = await contract.mint(Number(id), traits[id][0].value, traits[id][1].value, traits[id][2].value, traits[id][3].value, traits[id][4].value.toString() )
         const txn = await minttxn.wait();
         console.log(txn);
         
