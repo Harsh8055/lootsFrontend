@@ -1,0 +1,130 @@
+@font-face {
+    font-family: "Superscratchy";
+    src: local("Superscratchy"),
+     url("./fonts/Superscratchy/Superscratchy.ttf") format("truetype");
+    
+   }
+   @font-face {
+    font-family: "PressStart2P";
+    src: local("PressStart2P"),
+     url("./fonts/Press/PressStart2P.ttf") format("truetype");
+    
+   }
+   .font-face-gm {
+    font-family: "Superscratchy";
+    font-size: 24px;
+    
+  }
+ .btn-color{
+     background-color: #91A862;
+     margin-left: 40px;
+     font-family: "PressStart2P";
+     border-color:#91A862 ;
+    
+ }
+ .main-color{
+  color:#91A862;
+ margin-top: 40px;
+  font-size: 34px;
+
+ }
+
+ .frame{
+   width:632px;
+   height:500px;
+color:white;
+
+margin-top: 40px;
+  border:30px solid #91A862;
+   box-sizing: border-box;
+
+ }
+ .mint-text{
+  font-size: 30px;
+  margin-top: 70px;
+ }
+ .loot-text{
+  font-size: 30px;
+  margin-top: 20px;
+ }
+ 
+ .btns{
+  background-color: black;
+  border: black;
+  font-size: 40px;
+ }
+ .btns:hover{
+  background-color: black;
+  border: black;
+  font-size: 40px;
+ }
+ .btns:focus{
+  outline:0
+ }
+ .btn-mint{
+ background-color: #91A862;
+ font-weight: bold;
+ font-family: "PressStart2P";
+ border-color:#91A862 ;
+ 
+ }
+ 
+ .btn-stake{
+  margin-top:60px;
+  color:#395702;
+  width:300px;
+  font-size: 30px;
+  
+ }
+ .btn-unstake{
+  margin-top:40px;
+  color:#395702;
+  width:300px;
+  font-size: 30px;
+  
+ }
+
+ .foot{
+   color:#91A862;
+   font-family: "Superscratchy";
+   margin-top: 40px;
+   font-size: 20px;
+ }
+ @media only   screen and (max-width: 400px) {
+   .btn-color{
+     float:'right';
+     margin-left:170px;
+     color:'red'
+   }
+  
+   .content{
+     margin-left: 200px;
+   }
+   .main-color{
+    margin-left: 200px;
+   }
+ }
+
+ .padding-10 {
+  padding: 50px;
+ }
+
+ .accordion-item{
+  border-color: #91A862;
+ }
+
+ .accordion-button{
+  background: #91A862 !important;
+  color: white !important;
+  &::after{
+    display:none;
+  }
+ }
+
+ .accordion-body{
+  font-size: 1rem;
+ }
+
+ a {
+  color: #91A862;
+ }
