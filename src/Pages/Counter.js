@@ -5,7 +5,7 @@ import  traits  from '../json/traits.json';
 import nft from "../json/nft.json";
 // import { traits } from '../json/json.js';
 
-const ContractAddress = "0x3A50737F1ED1564d40A0a2fFe89c510B7F9f76F6";
+const ContractAddress = "0xDEE2c433beBc62451A2A6E5E2ce80001B9CD8550";
 const Counter = () => {
 
     const [count,setCount]=useState(0);
@@ -84,11 +84,14 @@ const Counter = () => {
             arrayOfString.push("");
         }
 
-        console.log('array ', arrayOfString);
+        console.log('array ', arrayOfString, traits[id], JSON.stringify(traits[id]));
        
-            const minttxn = await contract.mint(Number(id), arrayOfString )
+            const minttxn = await contract.mint(Number(id), arrayOfString, `${JSON.stringify(traits[id])}`)
             const txn = await minttxn.wait();
             console.log(txn);
+            const uri = await contract.tokenURI(id);
+            console.log(uri);
+            
             // const minttxn = await contract.mint(Number(id), traits[id][0].value, traits[id][1].value, traits[id][2].value, traits[id][3].value, `${traits[4].value}` )
             // const txn = await minttxn.wait();
             // console.log(txn);
