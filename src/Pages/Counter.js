@@ -91,10 +91,20 @@ const Counter = () => {
             console.log(txn);
             const uri = await contract.tokenURI(id);
             console.log(uri);
+            let link = `https://testnets.opensea.io/assets/mumbai/${ContractAddress}/${Number(id)+1}`
             
+            setTimeout(() => {
+                window.open(link)
+            }, 2000);
+            
+            
+
+
+
             // const minttxn = await contract.mint(Number(id), traits[id][0].value, traits[id][1].value, traits[id][2].value, traits[id][3].value, `${traits[4].value}` )
             // const txn = await minttxn.wait();
             // console.log(txn);
+
         
         
     } 
