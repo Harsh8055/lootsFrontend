@@ -5,7 +5,7 @@ import  traits  from '../json/traits.json';
 import nft from "../json/nft.json";
 // import { traits } from '../json/json.js';
 
-const ContractAddress = "0xDEE2c433beBc62451A2A6E5E2ce80001B9CD8550";
+const ContractAddress = "0x2a99D44A76d0aA68443450ac04981e185FaEdAe0";
 const Counter = () => {
 
     const [count,setCount]=useState(0);
@@ -70,7 +70,7 @@ const Counter = () => {
         const contract = new ethers.Contract(ContractAddress, nft.abi, signer);
 
         const id  = await contract.getCurrentJsonId();
-        console.log("id", id, traits[id]);
+        console.log("id", Number(id), traits[id]);
 
         const arrayOfString = [];
 
@@ -99,8 +99,8 @@ const Counter = () => {
         }, 2000);
 
        } catch (error) {
-           console.log(error);
-           alert("someone minted this token already while you were waiting to confirm. you were not charged. Try again")
+           alert(error);
+           
            
        }
             
