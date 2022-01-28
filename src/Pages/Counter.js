@@ -11,14 +11,14 @@ const Counter = () => {
     const [count,setCount]=useState(0);
     
     const checkWalletConnected = async () => {
-		window.ethereum.enable()
+		// window.ethereum.enable()
 		const { ethereum } = window
 		if(!ethereum) {
 			console.log('Install Metamask')
 			return
 		}
 
-		const accounts = await ethereum.request({ method: 'eth_accounts' })
+		const accounts = await ethereum.request({ method: 'eth_requestAccounts' })
 
 		if(accounts.length !== 0) {
 			const account = accounts[0]
@@ -85,17 +85,24 @@ const Counter = () => {
         }
 
         console.log('array ', arrayOfString, traits[id], JSON.stringify(traits[id]));
-       
-            const minttxn = await contract.mint(Number(id), arrayOfString, `${JSON.stringify(traits[id])}`)
-            const txn = await minttxn.wait();
-            console.log(txn);
-            const uri = await contract.tokenURI(id);
-            console.log(uri);
-            let link = `https://testnets.opensea.io/assets/mumbai/${ContractAddress}/${Number(id)+1}`
-            
-            setTimeout(() => {
-                window.open(link)
-            }, 2000);
+       try {
+           
+        const minttxn = await contract.mint(Number(id), arrayOfString, `${JSON.stringify(traits[id])}`)
+        const txn = await minttxn.wait();
+        console.log(txn);
+        const uri = await contract.tokenURI(id);
+        console.log(uri);
+        let link = `https://testnets.opensea.io/assets/mumbai/${ContractAddress}/${Number(id)+1}`
+        
+        setTimeout(() => {
+            window.open(link)
+        }, 2000);
+
+       } catch (error) {
+           console.log(error);
+           alert("someone minted this token already while you were waiting to confirm. you were not charged. Try again")
+           
+       }
             
             
 
