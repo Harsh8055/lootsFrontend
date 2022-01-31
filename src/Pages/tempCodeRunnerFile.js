@@ -1,1 +1,1 @@
-0x271D2BeB5db7266Cd34D512C8F8c06AD247fab4a
+const accounts = await ethereum.request({ method: 'eth_requestAccounts' })

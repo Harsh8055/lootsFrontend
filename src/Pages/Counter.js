@@ -1,15 +1,16 @@
 import React, { useState } from 'react'
 import { Row, Col,Button } from 'react-bootstrap'
 import {ethers} from "ethers"
-import  traits  from '../json/traits.json';
-import nft from "../json/nft.json";
+// import  traits  from '../json/traits.json';
+// import nft from "../json/nft.json";
+import newnft from "../json/newnft.json";
 // import { traits } from '../json/json.js';
 
-const ContractAddress = "0x2a99D44A76d0aA68443450ac04981e185FaEdAe0";
+const ContractAddress = "0x167B6e1B35E8DABf92FCBcEB738dd3f20629aEBA";
 const Counter = () => {
 
     const [count,setCount]=useState(0);
-    
+    const [account, setaccount] = useState("");
     const checkWalletConnected = async () => {
 		// window.ethereum.enable()
 		const { ethereum } = window
@@ -19,7 +20,9 @@ const Counter = () => {
 		}
 
 		const accounts = await ethereum.request({ method: 'eth_requestAccounts' })
-
+        setaccount(accounts[0])
+        console.log(account);
+        
 		if(accounts.length !== 0) {
 			const account = accounts[0]
 
@@ -67,39 +70,22 @@ const Counter = () => {
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         const signer = provider.getSigner();
 
-        const contract = new ethers.Contract(ContractAddress, nft.abi, signer);
+        const contract = new ethers.Contract(ContractAddress, newnft.abi, signer);
 
-        const id  = await contract.getCurrentJsonId();
-        console.log("id", Number(id), traits[id]);
-
-        const arrayOfString = [];
-
-        for (let index = 0; index < traits[id].length -1; index++) {
-            const element = traits[id][index].value;
-            arrayOfString.push(element)
-        }
-        console.log('array ', arrayOfString);
-
-        for (let index = traits[id].length; index < 8; index++) {
-            arrayOfString.push("");
-        }
-
-        console.log('array ', arrayOfString, traits[id], JSON.stringify(traits[id]));
+        
        try {
-           
-        const minttxn = await contract.mint(Number(id), arrayOfString, `${JSON.stringify(traits[id])}`)
+       console.log(account);
+       
+        const minttxn = await contract.mint(account, 1)
         const txn = await minttxn.wait();
         console.log(txn);
-        const uri = await contract.tokenURI(id);
-        console.log(uri);
-        let link = `https://testnets.opensea.io/assets/mumbai/${ContractAddress}/${Number(id)+1}`
+        // const uri = await contract.tokenURI();
+        // console.log(uri);
+        // let link = `https://testnets.opensea.io/assets/mumbai/${ContractAddress}/${Number(id)+1}`
         
-        setTimeout(() => {
-            window.open(link)
-        }, 2000);
 
        } catch (error) {
-           alert(error);
+           alert(error.message);
            
            
        }
