@@ -76,7 +76,7 @@ const Counter = () => {
        try {
        console.log(account);
        
-        const minttxn = await contract.mint(account, 1)
+        const minttxn = await contract.mint(account, count)
         const txn = await minttxn.wait();
         console.log(txn);
         // const uri = await contract.tokenURI();
