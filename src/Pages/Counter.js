@@ -72,11 +72,13 @@ const Counter = () => {
 
         const contract = new ethers.Contract(ContractAddress, newnft.abi, signer);
 
+      
         
        try {
        console.log(account);
-       
-        const minttxn = await contract.mint(account, count)
+       const { ethereum } = window;
+       const accounts = await ethereum.request({ method: 'eth_requestAccounts' })
+        const minttxn = await contract.mint(accounts[0], count)
         const txn = await minttxn.wait();
         console.log(txn);
         // const uri = await contract.tokenURI();
