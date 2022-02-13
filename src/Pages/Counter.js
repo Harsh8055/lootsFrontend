@@ -6,7 +6,7 @@ import {ethers} from "ethers"
 import newnft from "../json/newnft.json";
 // import { traits } from '../json/json.js';
 
-const ContractAddress = "0x167B6e1B35E8DABf92FCBcEB738dd3f20629aEBA";
+const ContractAddress = "0xeC46677BC55e62de10F093Bd0dFfF94829a2d73E";
 const Counter = () => {
 
     const [count,setCount]=useState(0);
@@ -31,7 +31,7 @@ const Counter = () => {
 			let network = await provider.getNetwork()
 			
 			if(network.name !==  "maticmum") {
-				alert("not connected to polygon mumbai testnet, please change the network to polygon mumbai testnet ")
+				console.log("not connected to polygon mumbai testnet, please change the network to polygon mumbai testnet ")
 			}
 			else {
 				console.log('maticmum connected');
@@ -85,7 +85,6 @@ const Counter = () => {
         // console.log(uri);
         // let link = `https://testnets.opensea.io/assets/mumbai/${ContractAddress}/${Number(id)+1}`
         
-
        } catch (error) {
            alert(error.message);
            
