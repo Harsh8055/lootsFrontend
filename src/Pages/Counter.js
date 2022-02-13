@@ -8,7 +8,7 @@ import newnft from "../json/newnft.json";
 
 const ContractAddress = "0xeC46677BC55e62de10F093Bd0dFfF94829a2d73E";
 const Counter = () => {
-
+    const [amount, setAmount] = useState(0);
     const [count,setCount]=useState(0);
     const [account, setaccount] = useState("");
     const checkWalletConnected = async () => {
@@ -78,7 +78,10 @@ const Counter = () => {
        console.log(account);
        const { ethereum } = window;
        const accounts = await ethereum.request({ method: 'eth_requestAccounts' })
-        const minttxn = await contract.mint(accounts[0], count)
+       let amountToSend = ethers.utils.parseEther(amount);
+       console.log(amountToSend);
+       
+        const minttxn = await contract.mint(accounts[0], count, {value: amountToSend})
         const txn = await minttxn.wait();
         console.log(txn);
         // const uri = await contract.tokenURI();
@@ -134,6 +137,7 @@ const Counter = () => {
                             onClick={() => incrementCount()}
                         >+</Button>
                         </div>
+                        <input type="number" id='number' onChange={(e)=> setAmount(e.currentTarget.value)}/>
                         <Button className="btn-mint" onClick={mint}>MINT NOW</Button>
                     </div>
                     </center>
